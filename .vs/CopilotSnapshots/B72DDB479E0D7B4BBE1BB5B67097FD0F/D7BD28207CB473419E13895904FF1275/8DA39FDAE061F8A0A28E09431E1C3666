@@ -1,0 +1,23 @@
+﻿import requests
+
+# 1. 基础配置
+base_url = "http://hulk.cmit.local:18080/v1"  # 你的LLM Gateway地址
+api_key = "eyJhbGciOiJIUzUxMiIsImlhdCI6MTc3OTA5MDczOSwiZXhwIjoxNzg2ODY2NzM5fQ.eyJpZCI6NzE2LCJuYW1lIjoid2FuZ3hmIiwic291cmNlIjoibGRhcCIsImV4dGVybmFsX2lkIjoie2VjYWE5ZGVkLWI2MzMtNGNmOC05Y2Q5LWQxZGE4MTYyYWFhYn0iLCJyb2xlIjoiVXNlciJ9.M_lPymDGllUI0BaMULupNQ8HaWa9G0zYfRgm5AGz8KBaBuBTcru472vOZilgULdROivMsRJmCxVlNkL81nvlfw"  # 从POST /v1/api-keys拿到的Key
+
+# 2. 调用 /v1/models 接口
+headers = {
+    "Authorization": f"Bearer {api_key}",
+    "Content-Type": "application/json"
+}
+
+response = requests.get(f"{base_url}/models", headers=headers)
+
+# 3. 处理返回结果
+if response.status_code == 200:
+    models = response.json()
+    print("✅ 获取模型列表成功：")
+    for model in models.get("data", []):
+        print(f"- 模型ID: {model['id']}")
+else:
+    print(f"❌ 请求失败，状态码: {response.status_code}")
+    print("错误信息:", response.text)
