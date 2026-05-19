@@ -11,4 +11,5 @@ ENV/
 # IDE 配置
 .idea/
 .vscode/
-*.swp
+*.swp.vs/ 
+__pycache__/ 
