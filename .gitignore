@@ -13,3 +13,6 @@ ENV/
 .vscode/
 *.swp.vs/ 
 __pycache__/ 
+.vs/ 
+__pycache__/ 
+".vs/" 
