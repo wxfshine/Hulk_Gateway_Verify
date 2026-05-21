@@ -120,6 +120,9 @@ def record_test_result(writer, result_handle, status, model_name, compliance_che
 
 def analyze_test_results(result_file):
     analysis = {
+        "report_generated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "test_start_time": "",
+        "test_end_time": "",
         "total_count": 0,
         "success_count": 0,
         "error_count": 0,
@@ -142,6 +145,10 @@ def analyze_test_results(result_file):
     with open(result_file, "r", encoding="utf-8-sig", newline="") as csv_file:
         reader = csv.DictReader(csv_file)
         rows = list(reader)
+
+    if rows:
+        analysis["test_start_time"] = rows[0]["timestamp"]
+        analysis["test_end_time"] = rows[-1]["timestamp"]
 
     for row in rows:
         status = row["status"]
@@ -318,6 +325,10 @@ def generate_analysis_html(analysis, result_file):
     <div class="card">
         <h1>Hulk Gateway 测试结果分析报告</h1>
         <p class="path">结果文件：{html.escape(result_file)}</p>
+        <div class="metric">报告生成时间：{html.escape(analysis['report_generated_at'])}</div>
+        <div class="metric">测试开始时间：{html.escape(analysis['test_start_time'] or '暂无数据')}</div>
+        <div class="metric">测试结束时间：{html.escape(analysis['test_end_time'] or '暂无数据')}</div>
+        <br>
         <div class="metric">总测试数：{analysis['total_count']}</div>
         <div class="metric">成功数：{analysis['success_count']}</div>
         <div class="metric">失败数：{analysis['error_count']}</div>
