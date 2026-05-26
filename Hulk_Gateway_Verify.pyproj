@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="api_case_testing.py" />
     <Compile Include="Hulk_Gateway_Verify.py" />
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +38,11 @@
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
       <Architecture>X64</Architecture>
     </Interpreter>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="docs\chat_completions_api_test_case_columns.md" />
+    <Content Include="docs\chat_completions_api_test_case_template.csv" />
+    <Content Include="docs\chat_completions_api_test_case_template_v2.csv" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

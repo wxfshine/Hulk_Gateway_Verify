@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Hulk Gateway API 用例测试分析报告</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; background: #f7f9fc; color: #1f2937; }
+        h1, h2 { color: #111827; }
+        .card { background: #ffffff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #eef2ff; }
+        .metric { display: inline-block; min-width: 220px; margin-right: 16px; margin-bottom: 8px; }
+        .path { color: #2563eb; word-break: break-all; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Hulk Gateway API 用例测试分析报告</h1>
+        <p class="path">用例文件：docs/chat_completions_api_test_case_template.csv</p>
+        <p class="path">结果文件：C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_api_case_result_20260526_164706.csv</p>
+        <div class="metric">报告生成时间：2026-05-26 16:47:07</div>
+        <div class="metric">测试开始时间：2026-05-26 16:47:06</div>
+        <div class="metric">测试结束时间：2026-05-26 16:47:07</div>
+        <br>
+        <div class="metric">总用例数：22</div>
+        <div class="metric">成功数：0</div>
+        <div class="metric">失败数：22</div>
+        <div class="metric">整体成功率：0.00%</div>
+    </div>
+
+    <div class="card">
+        <h2>测试结论摘要</h2>
+        <ul><li>本次共执行 22 条 API 用例，成功 0 条，失败 22 条，整体成功率 0.00% 。</li><li>最常见错误类型为 AssertionError，共出现 22 次。</li></ul>
+    </div>
+
+    <div class="card">
+        <h2>按 API 统计</h2>
+        <table>
+            <tr><th>API 名称</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>chat_completions</td><td>22</td><td>0</td><td>22</td><td>0.00%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>按用例前缀统计</h2>
+        <table>
+            <tr><th>分类</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>boundary_validation</td><td>1</td><td>0</td><td>1</td><td>0.00%</td></tr><tr><td>custom_extension</td><td>1</td><td>0</td><td>1</td><td>0.00%</td></tr><tr><td>default_value</td><td>2</td><td>0</td><td>2</td><td>0.00%</td></tr><tr><td>enum_validation</td><td>2</td><td>0</td><td>2</td><td>0.00%</td></tr><tr><td>happy_path</td><td>5</td><td>0</td><td>5</td><td>0.00%</td></tr><tr><td>required_validation</td><td>4</td><td>0</td><td>4</td><td>0.00%</td></tr><tr><td>response_schema</td><td>2</td><td>0</td><td>2</td><td>0.00%</td></tr><tr><td>type_validation</td><td>5</td><td>0</td><td>5</td><td>0.00%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>错误类型分布</h2>
+        <table>
+            <tr><th>错误类型</th><th>出现次数</th></tr>
+            <tr><td>AssertionError</td><td>22</td></tr>
+        </table>
+    </div>
+</body>
+</html>

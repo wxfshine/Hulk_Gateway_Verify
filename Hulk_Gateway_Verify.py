@@ -13,6 +13,8 @@ from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import unquote
 
+from api_case_testing import run_api_case_testing
+
 # 1. 基础配置
 base_url = "http://hulk.cmit.local:18080/v1"  # 你的LLM Gateway地址
 api_key = "eyJhbGciOiJIUzUxMiIsImlhdCI6MTc3OTA5MDczOSwiZXhwIjoxNzg2ODY2NzM5fQ.eyJpZCI6NzE2LCJuYW1lIjoid2FuZ3hmIiwic291cmNlIjoibGRhcCIsImV4dGVybmFsX2lkIjoie2VjYWE5ZGVkLWI2MzMtNGNmOC05Y2Q5LWQxZGE4MTYyYWFhYn0iLCJyb2xlIjoiVXNlciJ9.M_lPymDGllUI0BaMULupNQ8HaWa9G0zYfRgm5AGz8KBaBuBTcru472vOZilgULdROivMsRJmCxVlNkL81nvlfw"  # 从POST /v1/api-keys拿到的Key
@@ -1005,6 +1007,16 @@ def main():
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Hulk Gateway 接口验证与结果分析工具")
+    subparsers = parser.add_subparsers(dest="command")
+
+    api_case_parser = subparsers.add_parser("api-case-run", help="执行 API 用例测试")
+    api_case_parser.add_argument("case_file", help="API 用例 CSV 文件路径")
+
+    merge_files_parser = subparsers.add_parser("merge-files", help="直接合并一个或多个测试结果文件并生成分析报告")
+    merge_files_parser.add_argument("files", nargs="+", help="测试结果文件路径列表")
+
+    subparsers.add_parser("merge-report-ui", help="启动多测试结果文件合并分析网页")
+
     parser.add_argument(
         "--merge-report-ui",
         action="store_true",
@@ -1014,6 +1026,10 @@ def parse_args():
         "--merge-files",
         nargs="+",
         help="直接合并一个或多个测试结果文件并生成分析报告"
+    )
+    parser.add_argument(
+        "--api-case-file",
+        help="执行 API 用例测试，参数为用例 CSV 文件路径"
     )
     return parser.parse_args()
 
@@ -1028,9 +1044,19 @@ def run_merge_files_analysis(file_paths):
 
 if __name__ == "__main__":
     args = parse_args()
-    if args.merge_report_ui:
+    if args.command == "merge-report-ui" or args.merge_report_ui:
         launch_merge_analysis_portal()
+    elif args.command == "merge-files":
+        run_merge_files_analysis(args.files)
     elif args.merge_files:
         run_merge_files_analysis(args.merge_files)
+    elif args.command == "api-case-run":
+        setup_logging()
+        run_api_case_testing(base_url, api_key, args.case_file, get_log_dir())
+        print("✅ API 用例测试流程已执行完毕。")
+    elif args.api_case_file:
+        setup_logging()
+        run_api_case_testing(base_url, api_key, args.api_case_file, get_log_dir())
+        print("✅ API 用例测试流程已执行完毕。")
     else:
         main()

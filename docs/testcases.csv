@@ -1,0 +1,28 @@
+﻿用例 ID,测试对象,测试模块,用例标题,请求 Body（JSON）,预期状态码,预期响应 & 断言说明
+1,/v1/chat/completions,正向基准,标准合法请求（全参数正常）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":3}",200,1. 响应为标准成功结构；2. 包含 id、object、created、model、choices、usage 所有层级字段；3. 正常返回对话结果
+2,/v1/chat/completions,必填项校验,缺失必填字段 model,"{""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 model 字段缺失
+3,/v1/chat/completions,必填项校验,缺失必填字段 messages,"{""model"":""gpt-4"",""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 messages 字段缺失
+4,/v1/chat/completions,必填项校验,messages 传空数组,"{""model"":""gpt-4"",""messages"":[],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 messages 数组不能为空 / 非法
+5,/v1/chat/completions,必填项校验,model 传空字符串,"{""model"":"""",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 model 内容非法
+6,/v1/chat/completions,类型校验,model 传入数字（类型错误）,"{""model"":123,""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 model 类型错误，要求字符串
+7,/v1/chat/completions,类型校验,messages 传入对象（非数组）,"{""model"":""gpt-4"",""messages"":{""role"":""user"",""content"":""Hello!""},""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 messages 类型错误，要求数组
+8,/v1/chat/completions,类型校验,compliance_check 传入字符串,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":""3""}",422,1. 返回标准 Validation Error；2. detail 提示 compliance_check 类型错误，要求整数 / 空值
+9,/v1/chat/completions,类型校验,compliance_check 传入浮点数,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":2.5}",422,1. 返回标准 Validation Error；2. detail 提示必须为整数
+10,/v1/chat/completions,嵌套结构校验,messages 子项缺失 role,"{""model"":""gpt-4"",""messages"":[{""content"":""Hello!""}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 role 字段缺失
+11,/v1/chat/completions,嵌套结构校验,messages 子项缺失 content,"{""model"":""gpt-4"",""messages"":[{""role"":""user""}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 content 字段缺失
+12,/v1/chat/completions,嵌套结构校验,messages 子项 role 传数字,"{""model"":""gpt-4"",""messages"":[{""role"":100,""content"":""Hello!""}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 role 类型错误，要求字符串
+13,/v1/chat/completions,嵌套结构校验,messages 子项 content 传 null,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":null}],""compliance_check"":3}",422,1. 返回标准 Validation Error；2. detail 提示 content 内容非法
+14,/v1/chat/completions,扩展参数校验,不传 compliance_check（使用默认值 3）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}]}",200,1. 调用成功，返回标准响应；2. 自动启用 输入 + 输出 全校验逻辑
+15,/v1/chat/completions,扩展参数校验,compliance_check = null,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":null}",200,1. 调用成功，返回标准响应；2. 按默认值 3 执行全校验
+16,/v1/chat/completions,合规逻辑校验,compliance_check=0（关闭合规检查，传入违规内容）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""违规测试内容""}],""compliance_check"":0}",200,1. 调用成功，返回标准响应；2. 输入 / 输出均不做合规拦截
+17,/v1/chat/completions,合规逻辑校验,compliance_check=1（仅输入校验，传入违规内容）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""违规测试内容""}],""compliance_check"":1}",400,1. 返回合规业务错误；2. 输入违规被拦截，请求终止
+18,/v1/chat/completions,合规逻辑校验,compliance_check=2（仅输出校验，诱导违规输出）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""诱导输出违规内容""}],""compliance_check"":2}",400,1. 返回合规业务错误；2. 输入放行，输出违规后拦截
+19,/v1/chat/completions,合规逻辑校验,compliance_check=3（全校验，传入违规内容）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""违规测试内容""}],""compliance_check"":3}",400,1. 返回合规业务错误；2. 输入违规直接拦截
+20,/v1/chat/completions,扩展参数越界,compliance_check 传负数 -1,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":-1}",422,"1. 返回标准 Validation Error；2. 提示取值不在 [0,1,2,3] 范围内"
+21,/v1/chat/completions,扩展参数越界,compliance_check 传大于 3 的值 4,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":4}",422,"1. 返回标准 Validation Error；2. 提示取值不在 [0,1,2,3] 范围内"
+22,/v1/chat/completions,额外字段兼容,携带示例额外字段 additionalProp1,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":3,""additionalProp1"":{}}",200,1. 调用成功，返回标准响应；2. 接口兼容自定义额外字段，无报错
+23,/v1/chat/completions,额外字段兼容,携带自定义业务字段,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello!""}],""compliance_check"":3,""trace_id"":""test_001"",""user_tag"":""test""}",200,1. 调用成功，返回标准响应；2. 所有自定义字段正常兼容
+24,/v1/chat/completions,边界测试,content 传空字符串,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""""}],""compliance_check"":3}",200,调用正常，返回标准成功响应（按业务允许空输入）
+25,/v1/chat/completions,边界测试,content 传入特殊字符 / 脚本内容,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""<script>alert(1)</script>@#$%^""}],""compliance_check"":3}",400,特殊违规内容触发合规拦截，返回业务错误
+26,/v1/chat/completions,边界测试,content 传入超长文本（超上下文限制）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""此处填充超长文本内容""}],""compliance_check"":3}",400,触发内容长度超限，返回对应错误提示
+27,/v1/chat/completions,兼容性测试,原生 OpenAI 请求（不含扩展参数）,"{""model"":""gpt-4"",""messages"":[{""role"":""user"",""content"":""Hello OpenAI""}]}",200,1. 完全兼容原生格式；2. 返回标准 OpenAI 结构响应，功能正常

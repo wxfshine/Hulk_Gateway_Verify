@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Hulk Gateway API 用例测试分析报告</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; background: #f7f9fc; color: #1f2937; }
+        h1, h2 { color: #111827; }
+        .card { background: #ffffff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #eef2ff; }
+        .metric { display: inline-block; min-width: 220px; margin-right: 16px; margin-bottom: 8px; }
+        .path { color: #2563eb; word-break: break-all; }
+        pre { white-space: pre-wrap; word-break: break-word; margin: 0; font-family: Consolas, monospace; max-width: 420px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Hulk Gateway API 用例测试分析报告</h1>
+        <p class="path">用例文件：docs/chat_completions_api_test_case_template_v2.csv</p>
+        <p class="path">结果文件：C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_api_case_result_20260526_181907.csv</p>
+        <div class="metric">报告生成时间：2026-05-26 18:28:21</div>
+        <div class="metric">测试开始时间：2026-05-26 18:19:07</div>
+        <div class="metric">测试结束时间：2026-05-26 18:27:31</div>
+        <br>
+        <div class="metric">总用例数：22</div>
+        <div class="metric">成功数：8</div>
+        <div class="metric">失败数：14</div>
+        <div class="metric">整体成功率：36.36%</div>
+    </div>
+
+    <div class="card">
+        <h2>测试结论摘要</h2>
+        <ul><li>本次共执行 22 条 API 用例，成功 8 条，失败 14 条，整体成功率 36.36% 。</li><li>最常见错误类型为 ConnectionError，共出现 10 次。</li><li>检测到 1 条 451 响应，其中 0 条符合 RFC 7725，1 条需要进一步检查 Link 头或响应体说明。</li></ul>
+    </div>
+
+    <div class="card">
+        <h2>按 API 统计</h2>
+        <table>
+            <tr><th>API 名称</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>chat_completions</td><td>22</td><td>8</td><td>14</td><td>36.36%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>按用例前缀统计</h2>
+        <table>
+            <tr><th>分类</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>boundary_validation</td><td>1</td><td>0</td><td>1</td><td>0.00%</td></tr><tr><td>custom_extension</td><td>1</td><td>0</td><td>1</td><td>0.00%</td></tr><tr><td>default_value</td><td>2</td><td>0</td><td>2</td><td>0.00%</td></tr><tr><td>enum_validation</td><td>2</td><td>0</td><td>2</td><td>0.00%</td></tr><tr><td>happy_path</td><td>5</td><td>0</td><td>5</td><td>0.00%</td></tr><tr><td>required_validation</td><td>4</td><td>4</td><td>0</td><td>100.00%</td></tr><tr><td>response_schema</td><td>2</td><td>0</td><td>2</td><td>0.00%</td></tr><tr><td>type_validation</td><td>5</td><td>4</td><td>1</td><td>80.00%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>错误类型分布</h2>
+        <table>
+            <tr><th>错误类型</th><th>出现次数</th></tr>
+            <tr><td>ConnectionError</td><td>10</td></tr><tr><td>AssertionError</td><td>4</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>HTTP 状态码分布</h2>
+        <table>
+            <tr><th>状态码</th><th>出现次数</th></tr>
+            <tr><td>422</td><td>8</td></tr><tr><td>500</td><td>3</td></tr><tr><td>451</td><td>1</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>451 响应专项检查</h2>
+        <table>
+            <tr>
+                <th>用例编号</th>
+                <th>用例名称</th>
+                <th>实际状态码</th>
+                <th>blocked-by Link</th>
+                <th>RFC 7725 检查结果</th>
+                <th>响应体</th>
+            </tr>
+            <tr><td>CHAT-006</td><td>不传 compliance_check 使用默认值</td><td>451</td><td></td><td>不符合 RFC 7725: 缺少 Link 响应头或未包含 rel=blocked-by；响应体缺少核心原因说明；响应体缺少申诉渠道说明</td><td><pre>{&quot;raw_text&quot;: &quot;输出内容不合规\nHTTPConnectionPool(host=&#x27;hulk.cmit.local&#x27;, port=18888): Read timed out. (read timeout=8.0)&quot;}</pre></td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>失败用例明细</h2>
+        <table>
+            <tr>
+                <th>用例编号</th>
+                <th>用例名称</th>
+                <th>API 名称</th>
+                <th>状态</th>
+                <th>预期状态码</th>
+                <th>实际状态码</th>
+                <th>blocked-by Link</th>
+                <th>RFC 7725 检查</th>
+                <th>请求体</th>
+                <th>响应头</th>
+                <th>响应体</th>
+                <th>断言摘要</th>
+                <th>错误信息</th>
+            </tr>
+            <tr><td>CHAT-001</td><td>最小合法请求</td><td>chat_completions</td><td>error</td><td>200</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;介绍一下Python&quot;}]}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-002</td><td>显式传 compliance_check=0</td><td>chat_completions</td><td>error</td><td>200</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;你能做些什么&quot;}],&quot;compliance_check&quot;:0}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-003</td><td>显式传 compliance_check=1</td><td>chat_completions</td><td>error</td><td>200</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;我今天非常开心&quot;}],&quot;compliance_check&quot;:1}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-004</td><td>显式传 compliance_check=2</td><td>chat_completions</td><td>error</td><td>200</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;请介绍一下人工智能&quot;}],&quot;compliance_check&quot;:2}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-005</td><td>显式传 compliance_check=3</td><td>chat_completions</td><td>error</td><td>200</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;美国哪一年成立&quot;}],&quot;compliance_check&quot;:3}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-006</td><td>不传 compliance_check 使用默认值</td><td>chat_completions</td><td>error</td><td>200</td><td>451</td><td></td><td>不符合 RFC 7725: 缺少 Link 响应头或未包含 rel=blocked-by；响应体缺少核心原因说明；响应体缺少申诉渠道说明</td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;今天天气怎么样&quot;}]}</pre></td><td><pre>{&quot;date&quot;: &quot;Tue, 26 May 2026 10:23:13 GMT&quot;, &quot;server&quot;: &quot;uvicorn&quot;, &quot;content-length&quot;: &quot;112&quot;, &quot;content-type&quot;: &quot;text/plain; charset=utf-8&quot;}</pre></td><td><pre>{&quot;raw_text&quot;: &quot;输出内容不合规\nHTTPConnectionPool(host=&#x27;hulk.cmit.local&#x27;, port=18888): Read timed out. (read timeout=8.0)&quot;}</pre></td><td>451专项检查: 不符合 RFC 7725: 缺少 Link 响应头或未包含 rel=blocked-by；响应体缺少核心原因说明；响应体缺少申诉渠道说明</td><td>AssertionError: HTTP 状态码不匹配: 期望 200，实际 451</td></tr><tr><td>CHAT-007</td><td>传 null compliance_check</td><td>chat_completions</td><td>error</td><td>200</td><td>500</td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;请介绍下北京&quot;}],&quot;compliance_check&quot;:null}</pre></td><td><pre>{&quot;date&quot;: &quot;Tue, 26 May 2026 10:24:03 GMT&quot;, &quot;server&quot;: &quot;uvicorn&quot;, &quot;content-length&quot;: &quot;88&quot;, &quot;content-type&quot;: &quot;application/json&quot;}</pre></td><td><pre>{&quot;detail&quot;: &quot;合规检查异常: unsupported operand type(s) for &amp;: &#x27;NoneType&#x27; and &#x27;int&#x27;&quot;}</pre></td><td>执行或断言失败</td><td>AssertionError: HTTP 状态码不匹配: 期望 200，实际 500</td></tr><tr><td>CHAT-008</td><td>携带自定义扩展字段</td><td>chat_completions</td><td>error</td><td>200</td><td>500</td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;介绍一下大模型&quot;}],&quot;x_trace_id&quot;:&quot;trace-001&quot;,&quot;biz_tag&quot;:&quot;demo&quot;}</pre></td><td><pre>{&quot;date&quot;: &quot;Tue, 26 May 2026 10:24:03 GMT&quot;, &quot;server&quot;: &quot;uvicorn&quot;, &quot;content-length&quot;: &quot;116&quot;, &quot;content-type&quot;: &quot;application/json&quot;}</pre></td><td><pre>{&quot;detail&quot;: &quot;Chat Completions API 调用失败: Completions.create() got an unexpected keyword argument &#x27;x_trace_id&#x27;&quot;}</pre></td><td>执行或断言失败</td><td>AssertionError: HTTP 状态码不匹配: 期望 200，实际 500</td></tr><tr><td>CHAT-011</td><td>messages 为空数组</td><td>chat_completions</td><td>error</td><td>422</td><td>500</td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: []}</pre></td><td><pre>{&quot;date&quot;: &quot;Tue, 26 May 2026 10:24:10 GMT&quot;, &quot;server&quot;: &quot;uvicorn&quot;, &quot;content-length&quot;: &quot;170&quot;, &quot;content-type&quot;: &quot;application/json&quot;}</pre></td><td><pre>{&quot;detail&quot;: &quot;Chat Completions API 调用失败: Error code: 400 - {&#x27;error&#x27;: {&#x27;message&#x27;: &#x27;list index out of range&#x27;, &#x27;type&#x27;: &#x27;BadRequestError&#x27;, &#x27;param&#x27;: None, &#x27;code&#x27;: 400}}&quot;}</pre></td><td>执行或断言失败</td><td>AssertionError: HTTP 状态码不匹配: 期望 422，实际 500</td></tr><tr><td>CHAT-018</td><td>compliance_check 传字符串</td><td>chat_completions</td><td>error</td><td>422</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;介绍一下Python&quot;}],&quot;compliance_check&quot;:&quot;1&quot;}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-019</td><td>compliance_check=-1</td><td>chat_completions</td><td>error</td><td>422</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;介绍一下Python&quot;}],&quot;compliance_check&quot;:-1}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-020</td><td>compliance_check=4</td><td>chat_completions</td><td>error</td><td>422</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;介绍一下Python&quot;}],&quot;compliance_check&quot;:4}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-021</td><td>成功响应固定结构校验</td><td>chat_completions</td><td>error</td><td>200</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:&quot;Qwen3.6-35B-A3B&quot;,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;请简单介绍机器学习&quot;}]}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr><tr><td>CHAT-022</td><td>失败响应固定结构校验</td><td>chat_completions</td><td>error</td><td>422</td><td></td><td></td><td></td><td><pre>{&quot;model&quot;:123,&quot;messages&quot;: [{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;介绍一下Python&quot;}]}</pre></td><td><pre></pre></td><td><pre></pre></td><td>执行或断言失败</td><td>ConnectionError: (&#x27;Connection aborted.&#x27;, RemoteDisconnected(&#x27;Remote end closed connection without response&#x27;))</td></tr>
+        </table>
+    </div>
+</body>
+</html>

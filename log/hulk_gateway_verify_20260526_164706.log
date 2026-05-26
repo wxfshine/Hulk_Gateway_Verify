@@ -1,0 +1,181 @@
+日志文件: C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_20260526_164706.log
+2026-05-26 16:47:06,953 - ERROR - API 用例执行失败: CHAT-001 - 最小合法请求
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,002 - ERROR - API 用例执行失败: CHAT-002 - 显式传 compliance_check=0
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,038 - ERROR - API 用例执行失败: CHAT-003 - 显式传 compliance_check=1
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,087 - ERROR - API 用例执行失败: CHAT-004 - 显式传 compliance_check=2
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,149 - ERROR - API 用例执行失败: CHAT-005 - 显式传 compliance_check=3
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,200 - ERROR - API 用例执行失败: CHAT-006 - 不传 compliance_check 使用默认值
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,246 - ERROR - API 用例执行失败: CHAT-007 - 传 null compliance_check
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,282 - ERROR - API 用例执行失败: CHAT-008 - 携带自定义扩展字段
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,328 - ERROR - API 用例执行失败: CHAT-009 - 缺少 model
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,371 - ERROR - API 用例执行失败: CHAT-010 - 缺少 messages
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,412 - ERROR - API 用例执行失败: CHAT-011 - messages 为空数组
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,446 - ERROR - API 用例执行失败: CHAT-012 - messages 不是数组
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,508 - ERROR - API 用例执行失败: CHAT-013 - messages 元素缺少 role
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,551 - ERROR - API 用例执行失败: CHAT-014 - messages 元素缺少 content
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,586 - ERROR - API 用例执行失败: CHAT-015 - model 传整数
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,632 - ERROR - API 用例执行失败: CHAT-016 - role 传整数
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,674 - ERROR - API 用例执行失败: CHAT-017 - content 传数组
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,732 - ERROR - API 用例执行失败: CHAT-018 - compliance_check 传字符串
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,767 - ERROR - API 用例执行失败: CHAT-019 - compliance_check=-1
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,811 - ERROR - API 用例执行失败: CHAT-020 - compliance_check=4
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+2026-05-26 16:47:07,859 - ERROR - API 用例执行失败: CHAT-021 - 成功响应固定结构校验
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 200，实际 404
+2026-05-26 16:47:07,904 - ERROR - API 用例执行失败: CHAT-022 - 失败响应固定结构校验
+Traceback (most recent call last):
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 130, in _run_single_case
+    self._assert_equal(expected_http_status, actual_http_status, "HTTP 状态码")
+    ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\api_case_testing.py", line 323, in _assert_equal
+    raise AssertionError(f"{field_name}不匹配: 期望 {expected}，实际 {actual}")
+AssertionError: HTTP 状态码不匹配: 期望 422，实际 404
+API 用例结果文件: C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_api_case_result_20260526_164706.csv
+API 用例分析报告: C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_api_case_analysis_20260526_164707.html
+已在默认浏览器中打开 API 用例分析报告: C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_api_case_analysis_20260526_164707.html
+✅ API 用例测试流程已执行完毕。

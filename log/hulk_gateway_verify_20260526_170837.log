@@ -1,0 +1,27 @@
+日志文件: C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_20260526_170837.log
+结果表格文件: C:\Users\wangxf\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_result_20260526_170837.csv
+✅ 获取模型列表成功：
+- 模型ID: Qwen3.6-35B-A3B
+- 模型ID: deepseek-ocr
+- 模型ID: dengcao/Qwen3-Embedding-4B:Q4_K_M
+- 模型ID: gemma-4-31B-it
+- 模型ID: gemma4-26b-a4b
+- 模型ID: google/gemma-4-26b-a4b
+- 模型ID: llama3.2
+- 模型ID: qwen/qwen3-coder-next
+- 模型ID: qwen3-14b-awq
+- 模型ID: qwen3:8b
+- 模型ID: text-embedding-nomic-embed-text-v1.5
+********************
+✅ 聊天/对话模型列表：
+- 模型ID: Qwen3.6-35B-A3B
+- 模型ID: deepseek-ocr
+- 模型ID: gemma-4-31B-it
+- 模型ID: gemma4-26b-a4b
+- 模型ID: llama3.2
+- 模型ID: qwen3-14b-awq
+✅ 向量模型列表：
+- 模型ID: dengcao/Qwen3-Embedding-4B:Q4_K_M
+- 模型ID: text-embedding-nomic-embed-text-v1.5
+-------------开始验证调用对话--------------
+模型名称: Qwen3.6-35B-A3B - 内容输入: 介绍一下Python - compliance_check: 0 - 测试项目: 验证调用对话
