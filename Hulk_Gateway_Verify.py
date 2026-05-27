@@ -8,6 +8,9 @@ import html
 import io
 import json
 import webbrowser
+from openpyxl import Workbook
+from openpyxl.styles import Font, Alignment
+from openpyxl.utils import get_column_letter
 import argparse
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -40,8 +43,70 @@ RESULT_HEADERS = [
     "compliance_check",
     "input_content",
     "api_name",
+    # 额外字段，方便调试：预期/实际状态码、请求体、响应头、响应体
+    "expected_http_status",
+    "actual_http_status",
+    "request_payload",
+    "response_headers",
+    "response_body",
     "result_or_error"
 ]
+
+
+# 默认 contents 配置（当 docs 中没有配置文件时使用）
+DEFAULT_CONTENTS = {
+    "chat_completion": [
+        "介绍一下Python",
+        "你能做些什么",
+        "我今天非常开心",
+        "中国历史上最强大的王朝是哪个？",
+        "美国哪一年成立?",
+        "请给我说说人工智能中大模型、边缘模型是什么意思"
+    ],
+    "completion": [
+        "春天来了，万物复苏",
+        "今天天气真好，适合出去游玩",
+        "人工智能的发展趋势是",
+        "历史上最惨烈的水库泄洪事故",
+        "北京通州未来房价趋势",
+        "21世纪人类航天可能会有哪些突破"
+    ],
+    "embedding": [
+        "我喜欢AI",
+        "今天要下雨吗",
+        "航天科技的发展趋势是"
+    ]
+}
+
+
+def load_contents_config(file_path: str = None):
+    """从指定的 JSON 配置文件中加载 contents 配置。
+    文件示例 (docs/test_contents.json):
+    {
+      "chat_completion": ["...", "..."],
+      "completion": ["..."],
+      "embedding": ["..."]
+    }
+    """
+    if not file_path:
+        file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "docs", "test_contents.json")
+
+    try:
+        if os.path.isfile(file_path):
+            with open(file_path, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+                # 保证所有三类存在
+                return {
+                    "chat_completion": data.get("chat_completion", DEFAULT_CONTENTS["chat_completion"]),
+                    "completion": data.get("completion", DEFAULT_CONTENTS["completion"]),
+                    "embedding": data.get("embedding", DEFAULT_CONTENTS["embedding"])
+                }
+        else:
+            print(f"未找到 contents 配置文件: {file_path}，使用内置默认配置。")
+            return DEFAULT_CONTENTS.copy()
+    except Exception as err:
+        print(f"读取 contents 配置失败: {err}，使用内置默认配置。")
+        return DEFAULT_CONTENTS.copy()
 
 
 class TeeStream:
@@ -122,7 +187,22 @@ def format_result(result):
     return str(result)
 
 
-def record_test_result(writer, result_handle, status, model_name, compliance_check, input_content, api_name, result_or_error):
+def record_test_result(
+    writer,
+    result_handle,
+    status,
+    model_name,
+    compliance_check,
+    input_content,
+    api_name,
+    result_or_error,
+    expected_http_status="",
+    actual_http_status="",
+    request_payload="",
+    response_headers="",
+    response_body=""
+):
+    """将一条测试结果写入 CSV。额外的网络元数据可选传入。"""
     writer.writerow([
         datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         status,
@@ -130,6 +210,11 @@ def record_test_result(writer, result_handle, status, model_name, compliance_che
         compliance_check,
         input_content,
         api_name,
+        expected_http_status,
+        actual_http_status,
+        request_payload,
+        response_headers,
+        response_body,
         result_or_error
     ])
     result_handle.flush()
@@ -184,6 +269,78 @@ def merge_result_files(file_paths):
         raise ValueError("未从指定结果文件中读取到有效测试数据。")
 
     return create_merged_result_file(rows, source_descriptions=file_paths)
+
+
+def export_csv_to_excel_with_failure_details(csv_path):
+    """读取 CSV（script 输出），生成一个带“失败用例明细”表格的 XLSX 文件。返回 xlsx 路径。"""
+    wb = Workbook()
+    summary_ws = wb.active
+    summary_ws.title = "Summary"
+
+    # 读取 CSV 行
+    with open(csv_path, "r", encoding="utf-8-sig", newline="") as fh:
+        reader = csv.DictReader(fh)
+        rows = list(reader)
+
+    # 写入 Summary（这里简单写入总数/成功/失败）
+    total = len(rows)
+    success = sum(1 for r in rows if r.get("status") == "success")
+    error = total - success
+    summary_ws.append(["报告生成时间", datetime.now().strftime("%Y-%m-%d %H:%M:%S")])
+    summary_ws.append(["总测试数", total])
+    summary_ws.append(["成功数", success])
+    summary_ws.append(["失败数", error])
+
+    # 失败用例明细表
+    detail_ws = wb.create_sheet(title="失败用例明细")
+    # 五列：预期状态码/实际状态码/请求体/响应头/响应体，并保留基本信息
+    headers = [
+        "timestamp",
+        "model_name",
+        "api_name",
+        "input_content",
+        "expected_http_status",
+        "actual_http_status",
+        "request_payload",
+        "response_headers",
+        "response_body",
+        "result_or_error"
+    ]
+    detail_ws.append(headers)
+
+    for r in rows:
+        if r.get("status") != "success":
+            detail_ws.append([
+                r.get("timestamp", ""),
+                r.get("model_name", ""),
+                r.get("api_name", ""),
+                r.get("input_content", ""),
+                r.get("expected_http_status", ""),
+                r.get("actual_http_status", ""),
+                r.get("request_payload", ""),
+                r.get("response_headers", ""),
+                r.get("response_body", ""),
+                r.get("result_or_error", "")
+            ])
+
+    # 格式化列宽和样式
+    for ws in (summary_ws, detail_ws):
+        for col in ws.columns:
+            max_length = 0
+            col_letter = get_column_letter(col[0].column)
+            for cell in col:
+                try:
+                    if cell.value:
+                        max_length = max(max_length, len(str(cell.value)))
+                except Exception:
+                    pass
+            adjusted_width = min(max_length + 2, 80)
+            ws.column_dimensions[col_letter].width = adjusted_width
+
+    # 保存 xlsx
+    xlsx_path = os.path.splitext(csv_path)[0] + ".xlsx"
+    wb.save(xlsx_path)
+    return xlsx_path
 
 
 def merge_result_contents(file_items):
@@ -713,6 +870,28 @@ def post_json(url, payload):
         raise ValueError(f"接口返回的不是合法 JSON: {response.text}") from err
 
 
+def post_json_capture(url, payload):
+    """发送请求并返回元数据与解析后的 json（如果可解析）。"""
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    response = requests.post(url, json=payload, headers=headers)
+    # 不 raise_for_status，这样可以在非 200 时仍读取响应体
+    try:
+        parsed = response.json()
+    except ValueError:
+        parsed = {"raw_text": response.text}
+
+    return {
+        "status_code": response.status_code,
+        "headers": dict(response.headers),
+        "raw_text": response.text,
+        "parsed_json": parsed,
+        "request_payload": payload
+    }
+
+
 def get_json(url, params=None):
     headers = {
         "Authorization": f"Bearer {api_key}",
@@ -725,6 +904,26 @@ def get_json(url, params=None):
         return response.json()
     except ValueError as err:
         raise ValueError(f"接口返回的不是合法 JSON: {response.text}") from err
+
+
+def get_json_capture(url, params=None):
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    response = requests.get(url, headers=headers, params=params)
+    try:
+        parsed = response.json()
+    except ValueError:
+        parsed = {"raw_text": response.text}
+
+    return {
+        "status_code": response.status_code,
+        "headers": dict(response.headers),
+        "raw_text": response.text,
+        "parsed_json": parsed,
+        "request_payload": params
+    }
 
 
 def extract_chat_content(result):
@@ -751,6 +950,20 @@ def extract_embedding_vector(result):
     if not data or "embedding" not in data[0]:
         raise ValueError(f"接口返回缺少 data[0].embedding 字段: {result}")
     return data[0]["embedding"]
+
+
+def pretty_headers(headers):
+    try:
+        return json.dumps(headers, ensure_ascii=False)
+    except Exception:
+        return str(headers)
+
+
+def pretty_body(parsed_json, raw_text=None):
+    try:
+        return json.dumps(parsed_json, ensure_ascii=False)
+    except Exception:
+        return raw_text or str(parsed_json)
 
 
 def extract_feedback_items(result):
@@ -809,7 +1022,7 @@ def filter_models_by_name(models, allowed_model_names, model_type_name):
 
 
 # -------------------- 1. 对话聊天接口（最常用）----------------------
-def chat_completion(user_message: str, model_name: str, stream: bool = False,cmp_ck=0):
+def chat_completion(user_message: str, model_name: str, stream: bool = False,cmp_ck=0, capture: bool = False):
     """
     对话聊天接口
     :param user_message: 用户问题
@@ -825,12 +1038,17 @@ def chat_completion(user_message: str, model_name: str, stream: bool = False,cmp
         "compliance_check":cmp_ck
     }
 
+    if capture:
+        meta = post_json_capture(url, payload)
+        content = extract_chat_content(meta.get("parsed_json", {}))
+        return content, meta
+
     result = post_json(url, payload)
     return extract_chat_content(result)
 
 
 # -------------------- 2. 文本续写接口 ----------------------
-def completion(prompt: str, model_name: str, max_tokens: int = 512,cmp_ck=0):
+def completion(prompt: str, model_name: str, max_tokens: int = 512,cmp_ck=0, capture: bool = False):
     """
     文本续写接口
     :param prompt: 提示词
@@ -846,12 +1064,17 @@ def completion(prompt: str, model_name: str, max_tokens: int = 512,cmp_ck=0):
         "compliance_check":cmp_ck
     }
 
+    if capture:
+        meta = post_json_capture(url, payload)
+        text = extract_completion_text(meta.get("parsed_json", {}))
+        return text, meta
+
     result = post_json(url, payload)
     return extract_completion_text(result)
 
 
 # -------------------- 3. 向量嵌入接口 ----------------------
-def embedding(text: str, model_name: str,cmp_ck=0):
+def embedding(text: str, model_name: str,cmp_ck=0, capture: bool = False):
     """
     文本转向量（Embedding）
     :param text: 需要转向量的文本
@@ -864,6 +1087,11 @@ def embedding(text: str, model_name: str,cmp_ck=0):
         "input": text,
         "compliance_check":cmp_ck
     }
+
+    if capture:
+        meta = post_json_capture(url, payload)
+        vector = extract_embedding_vector(meta.get("parsed_json", {}))
+        return vector, meta
 
     result = post_json(url, payload)
     return extract_embedding_vector(result)
@@ -889,20 +1117,60 @@ def query_feedback(page: int = 1, page_size: int = 10):
     return get_json(url, params=params)
 
 def run_api_test(models, compliance_check, api_name, contents, api_func, writer, result_handle):
+    if not contents:
+        print(f"跳过 {api_name}：无待执行的 contents。")
+        return
+
     print(f"-------------开始{api_name}--------------")
     for model in models.get("data", []):
         model_name = model["id"]
         for content in contents:
             print(f"模型名称: {model_name} - 内容输入: {content} - compliance_check: {compliance_check} - 测试项目: {api_name}")
             try:
-                result = api_func(content, model_name=model_name, cmp_ck=compliance_check)
-                formatted_result = format_result(result)
+                # 使用 capture 模式一次请求得到解析值与元数据
+                value, meta = api_func(content, model_name=model_name, cmp_ck=compliance_check, capture=True)
+                formatted_result = format_result(value)
                 print("结果：", formatted_result)
-                record_test_result(writer, result_handle, "success", model_name, compliance_check, content, api_name, formatted_result)
+                record_test_result(
+                    writer,
+                    result_handle,
+                    "success",
+                    model_name,
+                    compliance_check,
+                    content,
+                    api_name,
+                    formatted_result,
+                    expected_http_status=200,
+                    actual_http_status=meta.get("status_code"),
+                    request_payload=meta.get("request_payload"),
+                    response_headers=pretty_headers(meta.get("headers")),
+                    response_body=pretty_body(meta.get("parsed_json"), meta.get("raw_text"))
+                )
             except Exception as err:
                 error_message = f"{type(err).__name__}: {err}"
                 print("报错信息：", error_message)
-                record_test_result(writer, result_handle, "error", model_name, compliance_check, content, api_name, error_message)
+                # 如果异常发生，但 meta 可用（部分解析在 api_func 内可能抛出），尽量记录 meta
+                try:
+                    # 当 api_func 在内部抛出并未返回 meta，我们仍尝试调用 capture separately
+                    meta = api_func(content, model_name=model_name, cmp_ck=compliance_check, capture=True)[1]
+                except Exception:
+                    meta = {}
+
+                record_test_result(
+                    writer,
+                    result_handle,
+                    "error",
+                    model_name,
+                    compliance_check,
+                    content,
+                    api_name,
+                    error_message,
+                    expected_http_status=200,
+                    actual_http_status=meta.get("status_code"),
+                    request_payload=meta.get("request_payload"),
+                    response_headers=pretty_headers(meta.get("headers")) if meta else "",
+                    response_body=pretty_body(meta.get("parsed_json"), meta.get("raw_text")) if meta else ""
+                )
         print("-" * 60)
 
 
@@ -967,17 +1235,17 @@ def test_feedback(models, compliance_check, writer, result_handle):
 
 
 def test_chat_completion(models, compliance_check, writer, result_handle):
-    contents = ["介绍一下Python", "你能做些什么", "我今天非常开心","中国历史上最强大的王朝是哪个？","美国哪一年成立?","请给我说说人工智能中大模型、边缘模型是什么意思"]
+    contents = DEFAULT_CONTENTS.get("chat_completion")
     run_api_test(models, compliance_check, "验证调用对话", contents, chat_completion, writer, result_handle)
 
 
 def test_completion(models, compliance_check, writer, result_handle):
-    contents = ["春天来了，万物复苏", "今天天气真好，适合出去游玩", "人工智能的发展趋势是", "历史上最惨烈的水库泄洪事故", "北京通州未来房价趋势", "21世纪人类航天可能会有哪些突破"]
+    contents = DEFAULT_CONTENTS.get("completion")
     run_api_test(models, compliance_check, "验证调用续写", contents, completion, writer, result_handle)
 
 
 def test_embedding(models, compliance_check, writer, result_handle):
-    contents = ["我喜欢AI", "今天要下雨吗", "航天科技的发展趋势是"]
+    contents = DEFAULT_CONTENTS.get("embedding")
     run_api_test(models, compliance_check, "验证调用向量", contents, embedding, writer, result_handle)
 
 
@@ -986,11 +1254,12 @@ def main():
     writer, result_handle, result_file = create_result_writer()
     models = get_models(base_url, api_key)
     print("*" * 20)
-
     if models:
         chat_models = filter_models_by_name(models, CHAT_MODEL_NAMES, "聊天/对话")
         embedding_models = filter_models_by_name(models, EMBEDDING_MODEL_NAMES, "向量")
-        for compliance_check in [0, 1]:
+
+        #for compliance_check in [0, 1,2,3]:
+        for compliance_check in [2]:
             test_chat_completion(chat_models, compliance_check, writer, result_handle)
             test_completion(chat_models, compliance_check, writer, result_handle)
             test_embedding(embedding_models, compliance_check, writer, result_handle)
@@ -1001,6 +1270,12 @@ def main():
         print(f"分析报告文件: {report_file}")
         open_analysis_html(report_file)
         print("如需合并多个测试结果文件进行统一分析，可运行: python Hulk_Gateway_Verify.py --merge-report-ui")
+
+        try:
+            xlsx_file = export_csv_to_excel_with_failure_details(result_file)
+            print(f"已生成 Excel 失败用例明细: {xlsx_file}")
+        except Exception as err:
+            print(f"生成 Excel 失败用例明细失败: {err}")
 
     print("✅ 测试流程已执行完毕。")
 
@@ -1031,6 +1306,14 @@ def parse_args():
         "--api-case-file",
         help="执行 API 用例测试，参数为用例 CSV 文件路径"
     )
+    parser.add_argument(
+        "--contents-file",
+        help="指定一个 JSON 文件路径，从中读取 chat_completion/completion/embedding 的 contents 配置（默认: docs/test_contents.json）"
+    )
+    parser.add_argument(
+        "--single-content",
+        help="仅运行单个内容项（会在所有对应 API 的模型上执行），输入应当与配置中的某一项文本完全匹配"
+    )
     return parser.parse_args()
 
 
@@ -1052,6 +1335,7 @@ if __name__ == "__main__":
         run_merge_files_analysis(args.merge_files)
     elif args.command == "api-case-run":
         setup_logging()
+        setup_logging()
         run_api_case_testing(base_url, api_key, args.case_file, get_log_dir())
         print("✅ API 用例测试流程已执行完毕。")
     elif args.api_case_file:
@@ -1059,4 +1343,20 @@ if __name__ == "__main__":
         run_api_case_testing(base_url, api_key, args.api_case_file, get_log_dir())
         print("✅ API 用例测试流程已执行完毕。")
     else:
+        # 如果指定了 contents-file，则加载并替换默认配置
+        if args.contents_file:
+            cfg = load_contents_config(args.contents_file)
+            DEFAULT_CONTENTS.update(cfg)
+
+        # 如果指定了 single-content，则过滤每类 contents，只保留匹配项
+        if args.single_content:
+            sc = args.single_content
+            for k in ["chat_completion", "completion", "embedding"]:
+                items = DEFAULT_CONTENTS.get(k, [])
+                if sc in items:
+                    DEFAULT_CONTENTS[k] = [sc]
+                else:
+                    # 如果指定的内容不在该类型中则保留原样（不会运行该类型）
+                    DEFAULT_CONTENTS[k] = []
+
         main()

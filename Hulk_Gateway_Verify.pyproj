@@ -44,6 +44,9 @@
     <Content Include="docs\chat_completions_api_test_case_template.csv" />
     <Content Include="docs\chat_completions_api_test_case_template_v2.csv" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="docs\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in

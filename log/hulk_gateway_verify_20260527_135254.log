@@ -1,0 +1,433 @@
+日志文件: C:\Users\cmit\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_20260527_135254.log
+结果表格文件: C:\Users\cmit\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_result_20260527_135254.csv
+✅ 获取模型列表成功：
+- 模型ID: Qwen3.6-35B-A3B
+- 模型ID: deepseek-ocr
+- 模型ID: dengcao/Qwen3-Embedding-4B:Q4_K_M
+- 模型ID: gemma-4-31B-it
+- 模型ID: gemma4-26b-a4b
+- 模型ID: google/gemma-4-26b-a4b
+- 模型ID: llama3.2
+- 模型ID: qwen/qwen3-coder-next
+- 模型ID: qwen3-14b-awq
+- 模型ID: qwen3:8b
+- 模型ID: text-embedding-nomic-embed-text-v1.5
+********************
+✅ 聊天/对话模型列表：
+- 模型ID: Qwen3.6-35B-A3B
+- 模型ID: deepseek-ocr
+- 模型ID: gemma-4-31B-it
+- 模型ID: gemma4-26b-a4b
+- 模型ID: llama3.2
+- 模型ID: qwen3-14b-awq
+✅ 向量模型列表：
+- 模型ID: dengcao/Qwen3-Embedding-4B:Q4_K_M
+- 模型ID: text-embedding-nomic-embed-text-v1.5
+-------------开始验证调用对话--------------
+模型名称: Qwen3.6-35B-A3B - 内容输入: 介绍一下Python - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+模型名称: Qwen3.6-35B-A3B - 内容输入: 你能做些什么 - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+模型名称: Qwen3.6-35B-A3B - 内容输入: 我今天非常开心 - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+------------------------------------------------------------
+模型名称: deepseek-ocr - 内容输入: 介绍一下Python - compliance_check: 2 - 测试项目: 验证调用对话
+结果： 的异常处理机制。
+模型名称: deepseek-ocr - 内容输入: 你能做些什么 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： ？如果你想做一些事情，你可能会做一些以下的事情：1. 参加活动：参加学校、社区或社区举办的体育活动、音乐活动、社交活动等。2. 学习新技能：参加在线课程、工作坊或工作坊等，提高自己的技能水平。3. 参加志愿者活动：帮助他人，学习新技能并成为团队的一部分。这些只是可能发生的事情，但取决于你的兴趣和背景。
+模型名称: deepseek-ocr - 内容输入: 我今天非常开心 - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ValueError: 接口返回缺少 choices 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+------------------------------------------------------------
+模型名称: gemma-4-31B-it - 内容输入: 介绍一下Python - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ValueError: 接口返回缺少 choices 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: gemma-4-31B-it - 内容输入: 你能做些什么 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： 我是一个由 Google 训练的大型语言模型。简单来说，你可以把我当作一个**全能的智能助手**。
+
+我的能力涵盖了文本生成、分析、翻译、编程以及创意写作等多个领域。为了让你更直观地了解，我将我的功能分成了以下几大类：
+
+### 1. ✍️ 内容创作与写作
+我可以帮你从零开始写东西，或者优化你已有的草稿：
+*   **创意写作：** 写小说、诗歌、剧本、歌词。
+*   **商务写作：** 写正式邮件、工作报告、简历、求职信、商业计划书。
+*   **社交媒体：** 写小红书文案、微博帖子、知乎回答、视频脚本。
+*   **润色修改：** 检查语法错误，改变文章的语气（例如把“随意”改为“专业”），或者精简冗长的句子。
+
+### 2. 🧠 学习、分析与知识获取
+我可以帮你快速消化信息，解决学习难题：
+*   **知识百科：** 回答关于历史、科学、地理、文化等各领域的常识性问题。
+*   **总结概括：** 把一篇长文章或一份冗长的文档简化为几个核心要点。
+*   **解释复杂概念：** 比如“请用 5 岁小孩能听懂的话向我解释量子力学”。
+*   **逻辑分析：** 帮你分析问题的利弊，提供决策建议或思维导图框架。
+
+### 3. 💻 编程与技术支持
+我精通多种编程语言（如 Python, JavaScript, Java, C++, HTML/CSS 等）：
+*   **编写代码：** 根据你的需求直接写出功能函数或完整的脚本。
+*   **代码调试（Debug）：** 你把报错信息发给我，我帮你分析原因并提供修复方案。
+*   **代码解释：** 解释一段复杂的代码是在做什么。
+*   **技术文档：** 帮你编写 API 文档或技术说明书。
+
+### 4. 🌐 语言翻译与语言学习
+我支持几十种语言的互译：
+*   **精准翻译：** 在中文、英文、日文、法文、德文等之间进行流畅翻译。
+*   **语言练习：** 陪你练习外语对话，纠正你的语法错误。
+*   **文化解读：** 解释特定语言中的习语或文化背景。
+
+### 5. 🛠️ 生活助手与灵感激发
+在日常生活中，我可以给你提供点子：
+*   **规划行程：** 为你的旅行制定详细的攻略和时间表。
+*   **饮食建议：** 根据你冰箱里现有的食材，为你推荐菜谱。
+*   **头脑风暴：** 为新产品起名字，或者为活动策划提供创意点子。
+*   **情绪陪伴：** 陪你聊天，听你倾诉，或者给你一些鼓励。
+
+---
+
+### 💡 如何更好地使用我？
+为了让我提供最精准的答案，你可以尝试这样对我下指令（Prompt）：
+*   **赋予我角色：** “请你扮演一名资深的面试官……” 或 “你现在是一个顶尖的 Python 专家……”
+*   **明确目标：** “请帮我写一封邮件，目标是让对方同意参加周五的会议。”
+*   **规定格式：** “请用表格的形式列出这两种手机的参数对比。”
+*   **限制字数：** “请用 100 字以内总结这篇文章。”
+
+**现在，你想让我帮你做点什么？**
+模型名称: gemma-4-31B-it - 内容输入: 我今天非常开心 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： 听到你这么说，我也感到非常开心！🌟
+
+这种好心情真是太棒了。如果你愿意的话，可以和我分享一下是因为发生了什么好事吗？或者就让这份快乐在心里多停留一会儿。
+
+祝你接下来的时间里，快乐继续升级！😊✨
+------------------------------------------------------------
+模型名称: gemma4-26b-a4b - 内容输入: 介绍一下Python - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ValueError: 接口返回缺少 choices 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: gemma4-26b-a4b - 内容输入: 你能做些什么 - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ValueError: 接口返回缺少 choices 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: gemma4-26b-a4b - 内容输入: 我今天非常开心 - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ValueError: 接口返回缺少 choices 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+------------------------------------------------------------
+模型名称: llama3.2 - 内容输入: 介绍一下Python - compliance_check: 2 - 测试项目: 验证调用对话
+报错信息： ValueError: 接口返回缺少 choices 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: llama3.2 - 内容输入: 你能做些什么 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： 我可以提供信息、娱乐和Creative tools。 我可以帮助您找找解决问题、给您提供建议或只是打打气给我，您想聊什麼?
+模型名称: llama3.2 - 内容输入: 我今天非常开心 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： Openness about having such a great day can bring joy! Would you like to share what made you feel so happy today?
+------------------------------------------------------------
+模型名称: qwen3-14b-awq - 内容输入: 介绍一下Python - compliance_check: 2 - 测试项目: 验证调用对话
+结果： <think>
+嗯，用户让我介绍一下Python，我得先想想怎么组织这个回答。首先，Python是什么？它是一种高级编程语言，对吧？然后，它的特点，比如简洁易读、动态类型、跨平台这些。可能还要提到它的应用领域，比如Web开发、数据分析、人工智能这些。不过用户可能不只是想要一个简单的介绍，可能还想知道为什么它受欢迎，或者它的历史背景？
+
+用户可能是刚开始学编程的新手，或者是想了解Python是否适合自己学习。如果是新手，可能需要强调Python的易学性，比如语法简单，社区支持好，有丰富的库和资源。如果是开发者，可能更关心它的性能、生态系统或者与其他语言的对比。
+
+另外，用户可能没有明确说明，但可能想知道Python的使用场景，比如在哪些行业或项目中常用。或者他们可能对Python的就业前景感兴趣，比如Python在数据科学、机器学习领域的高需求。
+
+还要注意避免使用太专业的术语，保持解释通俗易懂。比如，解释动态类型时，可以举例子说明，而不是直接定义。可能还要提到Python的解释器，比如CPython，以及它的不同版本，比如Python 2和Python 3的区别，但现在很多资料可能已经不强调Python 2了，因为已经停止支持，所以重点放在Python 3上。
+
+另外，Python的社区和生态系统很重要，比如有大量第三方库，像NumPy、Pandas、Django、Flask这些，可以举几个例子说明它们的用途。还有像Jupyter Notebook这样的工具，适合数据分析和教学。
+
+可能还要提到Python的缩进语法，这是它的一个独特之处，虽然对新手来说可能是个挑战，但也是保持代码整洁的原因之一。
+
+最后，总结一下Python的优势，比如易用性、可扩展性、跨平台能力，以及它在不同领域的应用，让读者了解为什么Python如此流行。同时，可以建议用户根据自己的需求选择学习Python，比如如果想做数据分析、AI或者Web开发，Python都是很好的选择。
+</think>
+
+Python 是一种高级、通用、解释型的编程语言，由 Guido van Rossum 于 1989 年末在荷兰发明，并于 1991 年首次发布。它以简洁易读的语法、强大的功能和广泛的应用场景而闻名，是当今世界上最受欢迎的编程语言之一。
+
+---
+
+### **1. 核心特点**
+- **简洁易读**：Python 的语法接近自然语言，代码结构清晰，减少了冗余的符号（如分号、括号），让开发者更专注于逻辑而非语法。
+- **动态类型与自动内存管理**：变量类型在运行时自动推断，无需显式声明类型；内存由 Python 解释器自动管理（如垃圾回收机制）。
+- **跨平台**：Python 可在 Windows、macOS、Linux 等多种操作系统上运行，且代码通常无需修改即可移植。
+- **开源免费**：Python 是开源语言，拥有庞大的社区支持和丰富的第三方库。
+- **多范式支持**：支持面向对象编程（OOP）、函数式编程、过程式编程等，灵活性高。
+- **解释型语言**：代码在运行时由解释器逐行执行，无需编译，便于调试和快速开发。
+
+---
+
+### **2. 应用领域**
+Python 的通用性和强大的库支持使其在多个领域都有广泛应用：
+- **Web 开发**：通过 Django、Flask 等框架构建后端服务。
+- **数据科学与机器学习**：NumPy、Pandas、Scikit-learn、TensorFlow、PyTorch 等库让数据处理和模型训练高效便捷。
+- **自动化与脚本**：常用于编写系统管理脚本、自动化办公工具（如 Excel 操作、爬虫）。
+- **人工智能与自然语言处理**：深度学习、语音识别、文本分析等领域的主流工具。
+- **科学计算与可视化**：Matplotlib、Seaborn、SciPy 等库支持科研数据的分析和绘图。
+- **游戏开发**：Pygame 等库可用于小型游戏开发。
+- **网络爬虫与数据分析**：BeautifulSoup、Requests、Scrapy 等库简化了网络数据抓取和处理。
+
+---
+
+### **3. 语法示例**
+Python 的语法简单直观，以下是几个例子：
+- **打印输出**：
+  ```python
+  print("Hello, World!")
+  ```
+- **变量与类型**：
+  ```python
+  x = 10          # 整数
+  y = "Python"   # 字符串
+  z = [1, 2, 3]  # 列表
+  ```
+- **函数定义**：
+  ```python
+  def greet(name):
+      return f"Hello, {name}!"
+  ```
+- **循环**：
+  ```python
+  for i in range(5):
+      print(i)
+  ```
+- **条件判断**：
+  ```python
+  if x > 5:
+      print("x is greater than 5")
+  else:
+      print("x is 5 or less")
+  ```
+
+---
+
+### **4. 为什么选择 Python？**
+- **学习曲线平缓**：适合编程初学者，是许多高校和培训机构的首选语言。
+- **丰富的库和框架**：无需重复造轮子，直接调用现成工具即可完成复杂任务。
+- **社区活跃**：全球开发者贡献了大量资源（如文档、教程、开源项目），解决问题便捷。
+- **跨领域兼容性**：从科学计算到企业级应用，Python 都能胜任。
+
+---
+
+### **5. 发展与现状**
+- **版本迭代**：Python 2 于 2020 年停止支持，目前主流为 Python 3（如 3.9、3.10、3.11）。
+- **行业地位**：根据 TIOBE 指数和 GitHub 数据，Python 长期位居编程语言排行榜前列。
+- **未来趋势**：随着人工智能、大数据的发展，Python 的需求持续增长，是未来技术领域的核心语言之一。
+
+---
+
+### **6. 学习资源**
+- **官方文档**：[https://docs.python.org/3/](https://docs.python.org/3/)（权威且全面）
+- **在线教程**：Codecademy、Coursera、LeetCode、B站（如“小甲鱼”教学视频）。
+- **书籍**：《Python编程：从入门到实践》《Python Cookbook》《流畅的Python》。
+- **社区**：Stack Overflow、Reddit 的 r/learnpython、知乎、掘金等。
+
+---
+
+### **7. 小贴士**
+- **缩进是语法的一部分**：Python 用缩进（空格或制表符）表示代码块，而非大括号 `{}`。
+- **虚拟环境**：使用 `venv` 或 `conda` 管理项目依赖，避免环境冲突。
+- **代码风格**：遵循 PEP 8 规范（Python 官方编码风格指南）以提高可读性。
+
+---
+
+如果你正在学习编程，Python 是一个绝佳的起点；如果是开发者，它也是扩展技能树的重要工具。无论是开发一个小型脚本，还是构建复杂的人工智能系统，Python 都能提供强大的支持！ 🐍
+模型名称: qwen3-14b-awq - 内容输入: 你能做些什么 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： <think>
+嗯，用户问我能做些什么，这个问题看起来挺直接的，但需要仔细考虑如何回答。首先，我需要回顾一下自己的功能范围，确保不遗漏任何重要点。作为通义千问，我的主要功能包括回答问题、创作文字、逻辑推理、编程等。不过，用户可能有不同的需求，所以需要分门别类地说明，同时保持回答的友好和易懂。
+
+接下来，我要考虑用户可能的背景。他们可能是普通用户，想了解我的基本功能；也可能是开发者，对技术细节更感兴趣。不过，根据问题本身，用户可能更倾向于了解我能提供的帮助，而不是技术实现。因此，回答应该以实用性和应用场景为主。
+
+然后，我需要组织信息的结构。可能需要分点列出，但避免使用Markdown格式，所以用自然的分段。例如，先总述我的能力，再分详细说明各个功能，如回答问题、创作、编程、多语言支持等。同时，要提到我的局限性，比如不能访问实时数据或执行外部操作，这样用户有合理的预期。
+
+还要注意语言的口语化，避免过于技术化的术语，让用户容易理解。比如，用“创作文字”而不是“文本生成”，用“编程”而不是“代码编写”。此外，加入一些例子，比如写故事、写邮件、写代码，这样用户能更直观地理解我的功能。
+
+另外，用户可能想知道我的独特之处，比如多语言支持、对话理解能力等，这些可以作为亮点强调。同时，提醒用户如果需要帮助，可以直接提问，保持互动性。
+
+最后，检查是否有遗漏的重要功能，比如是否支持特定领域的知识，或者是否有最新的功能更新。确保信息准确，不过时。同时，保持回答简洁，不过于冗长，但覆盖主要方面。
+</think>
+
+我可以帮助您完成多种任务，包括但不限于：
+
+1. **回答问题**：无论是科学、文化、生活常识还是冷门知识，我都会尽力提供准确、详细的解答。
+2. **创作文字**：可以帮您写故事、写邮件、写报告，甚至生成诗歌或剧本等创意内容。
+3. **逻辑推理**：解决数学题、分析复杂问题，或提供策略建议。
+4. **编程与技术**：编写代码、调试程序，或解释技术原理（如AI、机器学习等）。
+5. **多语言支持**：支持中文、英文、法语、西班牙语等100多种语言的交流与翻译。
+6. **日常协助**：比如制定计划、提供建议、模拟对话，甚至玩文字游戏。
+
+不过，我目前**无法执行外部操作**（如联网搜索、运行程序），也不能提供**实时数据**（如天气、股价）。如果您有任何问题或需要帮助，直接告诉我即可！ 😊
+模型名称: qwen3-14b-awq - 内容输入: 我今天非常开心 - compliance_check: 2 - 测试项目: 验证调用对话
+结果： <think>
+好的，用户今天说他非常开心，我需要回应他的情绪。首先，我应该表达对他开心的祝贺，比如“太好了！”或者“真为你高兴！”。然后，可以询问他为什么开心，这样能让他进一步分享，增加互动。同时，保持轻松友好的语气，避免过于正式。可能他想倾诉或者需要建议，但目前只是表达情绪，所以先以共情为主。接下来，可以鼓励他继续分享，比如“有什么开心的事吗？”或者“能和我分享一下吗？”。还要注意不要打断他，让他有空间表达。另外，可能需要后续跟进，如果他愿意的话，可以进一步帮助或提供支持。不过现在先以积极回应为主，让他感受到被关注和理解。还要避免使用复杂句子，保持口语化，自然流畅。比如用“今天过得怎么样？”或者“有什么特别开心的事吗？”这样的问题。总之，关键点是共情、询问原因、鼓励分享，同时保持友好和支持的态度。
+</think>
+
+太好了！看到你这么开心，我也为你感到高兴呢！😊 是有什么特别开心的事情吗？要不要和我分享一下呀？
+------------------------------------------------------------
+-------------开始验证调用续写--------------
+模型名称: Qwen3.6-35B-A3B - 内容输入: 春天来了，万物复苏 - compliance_check: 2 - 测试项目: 验证调用续写
+结果： ，小燕子从南方飞回来，它高兴的对伙伴说：\"春天真美呀！\"\n\n（1）从文中找出下列词语的近义词。\n\n复苏——（  ）  高兴——（  ）\n\n（2）\"我\"从南方飞回来时看到的景色是怎样的呢？（    ）
+A. 百花齐放
+B. 冰雪融化
+C. 万物复苏
+答案: 近义词的查找：理解词语的含义，并在文中找到与其意思相近的词语。阅读理解：通过上下文理解文章描述的场景，并选择最符合的选项。 所以答案是（1）苏醒；快乐 （2）C。
+
+以下是关于文学考试的单项选择题，请选出其中的正确答案。
+The underlined word “drought” in the second paragraph probably means “______”.
+A. a period of time when there is no rain
+B. a period of time when there is too much rain
+C. a period of time when there is enough rain
+D. a period of time when there is neither rain nor snow
+答案: 词汇理解：理解上下文中的词汇含义，尤其是通过上下文线索推断词义。 所以答案是A。
+
+以下是关于文学考试的单项选择题，请选出其中的正确答案。
+I think you can ________ a car ________ 500 dollars.
+A. buy; for
+B. buy; at
+C. sell; for
+D. sell; at
+答案: 英语语法 - 介词用法：'for' 用于表示价格或价值，'at' 用于表示地点或时间点。英语语法 - 动词搭配：'buy' 通常与 'for' 搭配表示购买价格，'sell' 通常与 'for' 搭配表示出售价格。 所以答案是A。
+
+以下是关于文学考试的单项选择题，请选出其中的正确答案。
+The old man ________ there alone ________ his friend was ________ .
+A. sitting; waiting for; late
+B. sat; was waiting for; late
+C. sitting; waited for; behind
+D. sat; was waiting for; behind
+答案: 英语语法 - 时态和语态: 了解过去进行时和一般过去时的用法。英语语法 - 介词短语: 理解介词短语在句子中的位置和用法。 所以答案是B。
+
+以下是关于文学考试的单项选择题，请选出其中的正确答案。
+He has already ______ the book, so he will buy it.
+A
+模型名称: Qwen3.6-35B-A3B - 内容输入: 今天天气真好，适合出去游玩 - compliance_check: 2 - 测试项目: 验证调用续写
+结果： ，我想去成都大熊猫基地
+
+<think>
+Here's a thinking process:
+
+1.  **Analyze User Input:**
+   - **Weather/Context:** "今天天气真好，适合出去游玩" (The weather is really nice today, perfect for going out and playing)
+   - **Destination:** "我想去成都大熊猫基地" (I want to go to the Chengdu Research Base of Giant Panda Breeding)
+   - **Implicit Needs:** The user is expressing intent to visit a specific tourist attraction. They likely need practical information, tips, reminders, or recommendations related to visiting the Chengdu Panda Base.
+
+2.  **Identify Key Information Needed:**
+   - Location & Name: 成都大熊猫繁育研究基地 (Chengdu Research Base of Giant Panda Breeding)
+   - Best time to visit: Morning (pandas are most active), weather considerations
+   - Ticket info: Booking method, price (approx.), age restrictions
+   - Transportation: How to get there (metro, bus, taxi)
+   - Duration: How long to spend there
+   - Tips/Reminders: What to bring, rules (no flash, keep distance, etc.), crowd avoidance, nearby attractions
+   - Current weather context: User mentioned good weather, so I should acknowledge it and maybe add sun protection/hydration tips.
+
+3.  **Structure the Response:**
+   - Acknowledge & Validate: Great choice! Weather is perfect for panda viewing.
+   - Key Tips/Recommendations (organized logically):
+     - 最佳游览时间 (Best time)
+     - 交通方式 (Transportation)
+     - 门票与预约 (Tickets & Booking)
+     - 参观建议/注意事项 (Tips & Rules)
+     - 周边搭配推荐 (Nearby attractions)
+   - Warm closing + offer further help
+
+4.  **Draft - Section by Section (Mental Refinement):**
+   - *Acknowledge:* 成都天气好确实特别适合逛熊猫基地！大熊猫在凉爽天气里更活跃，拍照也出片～
+   - *Best Time:* 建议早上8:00开门就进，9:00-10:00是熊猫吃竹子、玩耍的高峰期，下午容易打盹。避开周末/节假日高峰更好。
+   - *Tickets:* 提前在微信公众号“成都大熊猫繁育研究基地”或美团/携程预约购票，成人票约55元（价格可能浮动），
+------------------------------------------------------------
+模型名称: deepseek-ocr - 内容输入: 春天来了，万物复苏 - compliance_check: 2 - 测试项目: 验证调用续写
+报错信息： ValueError: 接口返回缺少 choices[0].text 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: deepseek-ocr - 内容输入: 今天天气真好，适合出去游玩 - compliance_check: 2 - 测试项目: 验证调用续写
+报错信息： ValueError: 接口返回缺少 choices[0].text 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+------------------------------------------------------------
+模型名称: gemma-4-31B-it - 内容输入: 春天来了，万物复苏 - compliance_check: 2 - 测试项目: 验证调用续写
+结果： 額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額
+模型名称: gemma-4-31B-it - 内容输入: 今天天气真好，适合出去游玩 - compliance_check: 2 - 测试项目: 验证调用续写
+结果： 額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額額
+------------------------------------------------------------
+模型名称: gemma4-26b-a4b - 内容输入: 春天来了，万物复苏 - compliance_check: 2 - 测试项目: 验证调用续写
+结果： ，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万物复苏，万
+模型名称: gemma4-26b-a4b - 内容输入: 今天天气真好，适合出去游玩 - compliance_check: 2 - 测试项目: 验证调用续写
+报错信息： ValueError: 接口返回缺少 choices[0].text 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+------------------------------------------------------------
+模型名称: llama3.2 - 内容输入: 春天来了，万物复苏 - compliance_check: 2 - 测试项目: 验证调用续写
+报错信息： ValueError: 接口返回缺少 choices[0].text 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: llama3.2 - 内容输入: 今天天气真好，适合出去游玩 - compliance_check: 2 - 测试项目: 验证调用续写
+报错信息： ValueError: 接口返回缺少 choices[0].text 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+------------------------------------------------------------
+模型名称: qwen3-14b-awq - 内容输入: 春天来了，万物复苏 - compliance_check: 2 - 测试项目: 验证调用续写
+报错信息： ValueError: 接口返回缺少 choices[0].text 字段: {'raw_text': "输出内容不合规\nHTTPConnectionPool(host='hulk.cmit.local', port=18888): Read timed out. (read timeout=8.0)"}
+模型名称: qwen3-14b-awq - 内容输入: 今天天气真好，适合出去游玩 - compliance_check: 2 - 测试项目: 验证调用续写
+结果： 。你有什么推荐的户外活动吗？
+
+今天天气晴朗，确实非常适合户外活动！以下是一些推荐，具体可以根据你的兴趣和所在地区选择：
+
+### 1. **徒步或登山**
+   - **推荐理由**：亲近自然，锻炼身体，呼吸新鲜空气。
+   - **适合人群**：喜欢运动、想放松心情的人。
+   - **小贴士**：选择有遮阳处的路线，注意防晒和补水。
+
+### 2. **野餐**
+   - **推荐理由**：和朋友或家人一起享受美食与阳光。
+   - **适合地点**：公园、湖边、郊外草坪。
+   - **小贴士**：带上遮阳伞、野餐垫，准备一些便携美食和饮料。
+
+### 3. **骑行**
+   - **推荐理由**：低碳环保，适合探索城市或乡村风光。
+   - **路线推荐**：城市环城路、山间小道或沿海公路。
+   - **小贴士**：检查车况，佩戴头盔，注意交通安全。
+
+### 4. **户外摄影**
+   - **推荐理由**：捕捉阳光、云朵、自然景观或街头人文。
+   - **适合地点**：植物园、海滩、古建筑区或城市地标。
+   - **小贴士**：利用自然光拍摄，注意保护相机设备。
+
+### 5. **露营**
+   - **推荐理由**：夜晚观星、篝火聊天，体验野外生活。
+   - **适合地点**：郊外营地、森林公园或湖边。
+   - **小贴士**：提前查看天气，携带防潮垫、睡袋和照明设备。
+
+### 6. **水上活动**（如天气允许）
+   - **推荐项目**：划船、桨板、游泳、浮潜等。
+   - **适合地点**：湖泊、河流、海边。
+   - **小贴士**：注意安全，穿戴救生设备，避免独自下水。
+
+### 7. **户外瑜伽或冥想**
+   - **推荐理由**：放松身心，感受自然的能量。
+   - **地点**：草地、沙滩、山顶等开阔地带。
+   - **小贴士**：选择平坦地面，避免阳光直射时间过长。
+
+### 8. **采摘活动**
+   - **推荐理由**：体验田园乐趣，享受亲手摘取的果实。
+   - **适合项目**
+------------------------------------------------------------
+-------------开始验证调用向量--------------
+模型名称: dengcao/Qwen3-Embedding-4B:Q4_K_M - 内容输入: 我喜欢AI - compliance_check: 2 - 测试项目: 验证调用向量
+结果： 向量长度: 2560, 前10项: [-7.869522232795134e-05, 0.013884398154914379, 0.024628223851323128, 0.0033368682488799095, -0.0006252120947465301, 0.01622803695499897, 0.0501931831240654, -0.008591193705797195, 0.02502298355102539, -0.03354352340102196]
+模型名称: dengcao/Qwen3-Embedding-4B:Q4_K_M - 内容输入: 今天要下雨吗 - compliance_check: 2 - 测试项目: 验证调用向量
+结果： 向量长度: 2560, 前10项: [-0.00012377669918350875, -0.007063367869704962, 0.04664439335465431, 0.017174914479255676, -0.0005395599873736501, 0.04457293078303337, 0.09699542075395584, 0.018901564180850983, 0.0065936073660850525, -0.019617963582277298]
+------------------------------------------------------------
+模型名称: text-embedding-nomic-embed-text-v1.5 - 内容输入: 我喜欢AI - compliance_check: 2 - 测试项目: 验证调用向量
+结果： 向量长度: 768, 前10项: [-0.008854077197611332, 0.02517789974808693, -0.11848703771829605, 0.026911882683634758, 0.0301570612937212, 0.03017837554216385, 0.03757084161043167, -0.03994224593043327, -0.01421151403337717, 0.005645633675158024]
+模型名称: text-embedding-nomic-embed-text-v1.5 - 内容输入: 今天要下雨吗 - compliance_check: 2 - 测试项目: 验证调用向量
+结果： 向量长度: 768, 前10项: [0.017214763909578323, 0.03417307510972023, -0.1766008734703064, -0.025388648733496666, -0.030439788475632668, 0.009777755476534367, 0.051189396530389786, -0.030104707926511765, -0.048378121107816696, -0.022541005164384842]
+------------------------------------------------------------
+-------------开始验证调用反馈提交与查询--------------
+模型名称: Qwen3.6-35B-A3B - 内容输入: 请介绍一下Python的主要特点 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+模型名称: Qwen3.6-35B-A3B - 内容输入: 请总结一下人工智能的发展趋势 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+------------------------------------------------------------
+模型名称: deepseek-ocr - 内容输入: 请介绍一下Python的主要特点 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+模型名称: deepseek-ocr - 内容输入: 请总结一下人工智能的发展趋势 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+------------------------------------------------------------
+模型名称: gemma-4-31B-it - 内容输入: 请介绍一下Python的主要特点 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： HTTPError: 451 Client Error: Unavailable For Legal Reasons for url: http://hulk.cmit.local:18080/v1/chat/completions
+模型名称: gemma-4-31B-it - 内容输入: 请总结一下人工智能的发展趋势 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： HTTPError: 451 Client Error: Unavailable For Legal Reasons for url: http://hulk.cmit.local:18080/v1/chat/completions
+------------------------------------------------------------
+模型名称: gemma4-26b-a4b - 内容输入: 请介绍一下Python的主要特点 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： HTTPError: 451 Client Error: Unavailable For Legal Reasons for url: http://hulk.cmit.local:18080/v1/chat/completions
+模型名称: gemma4-26b-a4b - 内容输入: 请总结一下人工智能的发展趋势 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+结果： 提交成功并查询校验成功，rating=9, comment=自动化测试反馈2 compliance_check=2
+------------------------------------------------------------
+模型名称: llama3.2 - 内容输入: 请介绍一下Python的主要特点 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： HTTPError: 451 Client Error: Unavailable For Legal Reasons for url: http://hulk.cmit.local:18080/v1/chat/completions
+模型名称: llama3.2 - 内容输入: 请总结一下人工智能的发展趋势 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： HTTPError: 451 Client Error: Unavailable For Legal Reasons for url: http://hulk.cmit.local:18080/v1/chat/completions
+------------------------------------------------------------
+模型名称: qwen3-14b-awq - 内容输入: 请介绍一下Python的主要特点 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+结果： 提交成功并查询校验成功，rating=8, comment=自动化测试反馈 compliance_check=2
+模型名称: qwen3-14b-awq - 内容输入: 请总结一下人工智能的发展趋势 - compliance_check: 2 - 测试项目: 验证调用反馈提交与查询
+报错信息： HTTPError: 451 Client Error: Unavailable For Legal Reasons for url: http://hulk.cmit.local:18080/v1/chat/completions
+------------------------------------------------------------
+分析报告文件: C:\Users\cmit\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_analysis_20260527_141452.html
+已在默认浏览器中打开分析报告: C:\Users\cmit\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_analysis_20260527_141452.html
+如需合并多个测试结果文件进行统一分析，可运行: python Hulk_Gateway_Verify.py --merge-report-ui
+已生成 Excel 失败用例明细: C:\Users\cmit\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_result_20260527_135254.xlsx
+✅ 测试流程已执行完毕。

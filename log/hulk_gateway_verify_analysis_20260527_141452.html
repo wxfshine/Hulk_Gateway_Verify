@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Hulk Gateway 测试结果分析报告</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; background: #f7f9fc; color: #1f2937; }
+        h1, h2 { color: #111827; }
+        .card { background: #ffffff; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); }
+        table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+        th, td { border: 1px solid #d1d5db; padding: 8px 10px; text-align: left; vertical-align: top; }
+        th { background: #eef2ff; }
+        ul { margin: 0; padding-left: 20px; }
+        .metric { display: inline-block; min-width: 180px; margin-right: 16px; margin-bottom: 8px; }
+        .path { color: #2563eb; word-break: break-all; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Hulk Gateway 测试结果分析报告</h1>
+        <p class="path">结果文件：C:\Users\cmit\source\repos\Hulk_Gateway_Verify\log\hulk_gateway_verify_result_20260527_135254.csv</p>
+        <div class="metric">报告生成时间：2026-05-27 14:14:52</div>
+        <div class="metric">测试开始时间：2026-05-27 13:54:34</div>
+        <div class="metric">测试结束时间：2026-05-27 14:14:52</div>
+        <br>
+        <div class="metric">总测试数：46</div>
+        <div class="metric">成功数：21</div>
+        <div class="metric">失败数：25</div>
+        <div class="metric">整体成功率：45.65%</div>
+    </div>
+
+    <div class="card">
+        <h2>测试结论摘要</h2>
+        <ul><li>本次共执行 46 条测试，成功 21 条，失败 25 条，整体成功率 45.65% 。</li><li>成功率最高的模型是 dengcao/Qwen3-Embedding-4B:Q4_K_M，成功率 100.00% 。</li><li>成功率最低的模型是 Qwen3.6-35B-A3B，成功率 28.57% 。</li><li>反馈链路共测试 12 条，成功率 16.67% 。</li><li>最常见错误类型为 ValueError，共出现 12 次。</li><li>未发现模型类型与接口类型不匹配的记录。</li></ul>
+    </div>
+
+    <div class="card">
+        <h2>按接口类型统计</h2>
+        <table>
+            <tr><th>接口类型</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>验证调用反馈提交与查询</td><td>12</td><td>2</td><td>10</td><td>16.67%</td></tr><tr><td>验证调用向量</td><td>4</td><td>4</td><td>0</td><td>100.00%</td></tr><tr><td>验证调用对话</td><td>18</td><td>9</td><td>9</td><td>50.00%</td></tr><tr><td>验证调用续写</td><td>12</td><td>6</td><td>6</td><td>50.00%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>按模型统计</h2>
+        <table>
+            <tr><th>模型名称</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>Qwen3.6-35B-A3B</td><td>7</td><td>2</td><td>5</td><td>28.57%</td></tr><tr><td>deepseek-ocr</td><td>7</td><td>2</td><td>5</td><td>28.57%</td></tr><tr><td>dengcao/Qwen3-Embedding-4B:Q4_K_M</td><td>2</td><td>2</td><td>0</td><td>100.00%</td></tr><tr><td>gemma-4-31B-it</td><td>7</td><td>4</td><td>3</td><td>57.14%</td></tr><tr><td>gemma4-26b-a4b</td><td>7</td><td>2</td><td>5</td><td>28.57%</td></tr><tr><td>llama3.2</td><td>7</td><td>2</td><td>5</td><td>28.57%</td></tr><tr><td>qwen3-14b-awq</td><td>7</td><td>5</td><td>2</td><td>71.43%</td></tr><tr><td>text-embedding-nomic-embed-text-v1.5</td><td>2</td><td>2</td><td>0</td><td>100.00%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>按合规开关统计</h2>
+        <table>
+            <tr><th>compliance_check</th><th>总数</th><th>成功</th><th>失败</th><th>成功率</th></tr>
+            <tr><td>2</td><td>46</td><td>21</td><td>25</td><td>45.65%</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>反馈接口专项统计</h2>
+        <div class="metric">反馈测试数：12</div>
+        <div class="metric">反馈成功数：2</div>
+        <div class="metric">反馈失败数：10</div>
+        <div class="metric">反馈成功率：16.67%</div>
+    </div>
+
+    <div class="card">
+        <h2>错误类型分布</h2>
+        <table>
+            <tr><th>错误类型</th><th>出现次数</th></tr>
+            <tr><td>ValueError</td><td>12</td></tr><tr><td>ConnectionError</td><td>7</td></tr><tr><td>HTTPError</td><td>6</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>高频失败输入</h2>
+        <table>
+            <tr><th>输入内容</th><th>失败次数</th></tr>
+            <tr><td>请介绍一下Python的主要特点</td><td>5</td></tr><tr><td>请总结一下人工智能的发展趋势</td><td>5</td></tr><tr><td>介绍一下Python</td><td>4</td></tr><tr><td>今天天气真好，适合出去游玩</td><td>3</td></tr><tr><td>我今天非常开心</td><td>3</td></tr><tr><td>春天来了，万物复苏</td><td>3</td></tr><tr><td>你能做些什么</td><td>2</td></tr>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>模型类型与接口类型匹配检查</h2>
+        <table>
+            <tr><th>模型名称</th><th>接口类型</th><th>输入内容</th><th>状态</th></tr>
+            <tr><td colspan='4'>未发现不匹配记录</td></tr>
+        </table>
+    </div>
+</body>
+</html>
